@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: fa_social_media_icons 0.9.9\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2017-01-21T13:53:07+01:00\n"
+"PO-Revision-Date: 2017-01-21T13:53:07+01:00\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: packages/fa_social_media_icons/controller.php:21
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/controller.php:21
+msgid "Social Media Icons based on FontAwesome"
+msgstr ""
+
+#: packages/fa_social_media_icons/controller.php:26
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/controller.php:16
+msgid "Add FontAwesome social media icons on your pages."
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:4
+msgid "Social Media Accounts"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:5
+msgid "Color and Style"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:66
+msgid "a new window or tab"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:67
+msgid "the same frame as it was clicked (this is default)"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:68
+msgid "the parent frame"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:69
+msgid "the full body of the window"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:94
+msgid "Open Links in..."
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:133
+msgid "Icon Shape"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:134
+msgid "round"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:134
+msgid "square"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:136
+msgid "Icon Color"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:137
+msgid "logo"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:137
+msgid "black"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:137
+msgid "grey"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:137
+msgid "inverse"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:139
+msgid "Icon Size"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:142
+msgid "Hover Icon"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:154
+msgid "Icon Spacing"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:155
+msgid "Space between icons (margin left + right)."
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:164
+msgid "Icon Preview"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:5
+msgid "https://www.behance.net/your-account-name"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:6
+msgid "https://your-account-name.deviantart.com"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:7
+msgid "https://dribbble.com/your-account-name"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:8
+msgid "mailto:your-email-address@example.com"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:9
+msgid "https://www.facebook.com/your-account-name"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:10
+msgid "https://www.flickr.com/photos/your-account-name"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:11
+msgid "https://github.com/your-account-name"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:12
+msgid "https://plus.google.com/+your-account-name"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:13
+msgid "http://instagram.com/your-account-name"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:14
+msgid "https://itunes.apple.com/..."
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:15
+msgid "https://www.linkedin.com/in/your-account-name"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:16
+msgid "https://www.pinterest.com/your-account-name"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:17
+msgid "skype:profile_name?your-account-name"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:18
+msgid "https://soundcloud.com/your-account-name"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:19
+msgid "https://play.spotify.com/artist/your-account-name"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:20
+msgid "http://www.your-account-name.tumblr.com"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:21
+msgid "https://twitter.com/your-account-name"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:22
+msgid "http://vimeo.com/your-account-name"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:23
+msgid "https://www.youtube.com/user/your-account-name"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:24
+msgid "https://www.xing.com/profile/your-account-name"
+msgstr ""
+
+#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:66
+msgid "Go to"
+msgstr "Gehe nach"

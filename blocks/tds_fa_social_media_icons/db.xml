@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema version="0.3">
+
+  <table name="btTdsFaSocialMediaIcons">
+    <field name="bID" type="I">
+      <unsigned/>
+      <key/>
+    </field>
+    <field name="linkTarget" type="C"/>
+    <field name="iconShape" type="C"/>
+    <field name="iconColor" type="C"/>
+    <field name="iconSize" type="I"/>
+    <field name="hoverIcon" type="C"/>
+    <field name="iconMargin" type="I"/>
+    <field name="mediaList" type="X"/>
+  </table>
+
+</schema>
