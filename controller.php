@@ -3,6 +3,7 @@ namespace Concrete\Package\TdsFaSocialMediaIcons;
 
 use Package;
 use BlockType;
+use AssetList;
 
 /*
  * FontAwesome Social Media Icons by Thomas Dausner (aka dausi)
@@ -18,7 +19,7 @@ class Controller extends Package
 {
     protected $pkgHandle = 'tds_fa_social_media_icons';
     protected $appVersionRequired = '5.7.3';
-    protected $pkgVersion = '0.9.1';
+    protected $pkgVersion = '0.9.2';
 
     public function getPackageName()
     {
@@ -36,7 +37,25 @@ class Controller extends Package
 
         $blk = BlockType::getByHandle('tds_fa_social_media_icons');
         if (!is_object($blk)) {
-            BlockType::installBlockTypeFromPackage('tds_fa_social_media_icons', $pkg);
+            BlockType::installBlockType('tds_fa_social_media_icons', $pkg);
         }
+    }
+
+    public function on_start()
+    {
+    	$dummy = t('Social Media Icons based on FontAwesome');	// get localisation running!
+
+		$al = AssetList::getInstance();
+		$assets = [
+			'css' => 'blocks/tds_fa_social_media_icons/css/form.css',
+			'javascript' => 'blocks/tds_fa_social_media_icons/js/form.js'
+		];
+    	$assetGroups= [];
+		foreach ($assets as $type => $asset)
+		{
+			$al->register($type, 'tds_fa_social_media_icons/'.$type, $asset, [], 'tds_fa_social_media_icons');
+			$assetGroups[] = [$type, 'tds_fa_social_media_icons/'.$type];
+		}
+		$al->registerGroup('tds_fa_social_media_icons', $assetGroups);
     }
 }

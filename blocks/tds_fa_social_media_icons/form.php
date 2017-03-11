@@ -1,4 +1,3 @@
-
 <?php  defined('C5_EXECUTE') or die('Access Denied.');
 
 print Core::make('helper/concrete/ui')->tabs(array(
@@ -6,78 +5,7 @@ print Core::make('helper/concrete/ui')->tabs(array(
 	array('colorstyle', t('Color and Style'))
 ));
 
-?>
-
-<style>
-
-.ccm-block-fa-social-media-icons ul#sortable {
-	margin: 0;
-	padding: 0;
-	border: none;
-}
-.ccm-block-fa-social-media-icons #sortable li.ui-state-default {
-	margin: 0 0 10px 0;
-	padding: 5px;
-	list-style: none;
-	border: none;
-}
-.ccm-block-fa-social-media-icons #sortable .ui-state-highlight {
-	height: 67px;
-	line-height: 1.2em;
-	list-style: none;
-}
-.ccm-block-fa-social-media-icons .input-group-addon.move {
-	cursor: move;
-}
-.ccm-block-fa-social-media-icons .ui-sortable-helper {
-	-webkit-box-shadow: 0px 10px 18px 2px rgba(54,55,66,0.27);
-	-moz-box-shadow: 0px 10px 18px 2px rgba(54,55,66,0.27);
-	box-shadow: 0px 10px 18px 2px rgba(54,55,66,0.27);
-	border: 1px solid #ccc !important;
-}
-.ccm-ui label.control-label {
-	padding-top: 15px;
-}
-
-div.ui-dialog .ui-dialog-content div.form-group {
-	padding: 0;
-	margin: 0 0 20px;
-}
-#ccm-tab-content-colorstyle div.form-group {
-	width: 50%;
-}
-#ccm-tab-content-colorstyle ul {
-	padding: 0;
-}
-#ccm-tab-content-colorstyle li.icon-box {
-	list-style-image: none;
-	display: inline-block;
-}
-#icon-set-container {
-	padding-right: 8px;
-}
-#icon-preview-container {
-	padding-left: 8px;
-}
-</style>
-
-<?php
-
-$targets = [
-	'_blank'	=> t('a new window or tab'),
-	'_self'		=> t('the same frame as it was clicked (this is default)'),
-	'_parent'	=> t('the parent frame'),
-	'_top'		=> t('the full body of the window'),
-];
-
-$borderRadius = $iconShape == 'round' ? $iconSize / 2: 0;
-$hoverAttrs = $hoverIcon != 'none' ? "background: $hoverIcon;" : '';
-
-echo '
-<style id="iconStyles" type="text/css">
-	', str_replace(	['%iconMargin%', '%iconSize%', '%borderRadius%', '%hoverAttrs%'	],
-					[ $iconMargin,    $iconSize,    $borderRadius,	  $hoverAttrs	], $this->controller->getIconStyles() ), '
-</style>
+echo $this->controller->getIconStylesExpanded(), '
 
 <div id="ccm-tab-content-accounts" class="ccm-tab-content ccm-block-fa-social-media-icons">
 
@@ -107,7 +35,7 @@ foreach ($this->controller->getMediaList() as $key => $props)
 			</li>';
 
 	$preview .= '
-			<li id="p' . $key . '" class="icon-box">
+			<li id="p' . $key . '" class="icon-box" title="' . $key . '">
 				' . $props['iconHtml'] . '
 			</li>';
 }
@@ -149,6 +77,7 @@ echo '
 			$form->text('iconMargin', $iconMargin, ['style' => 'text-align: center;']), '
 			<span class="input-group-addon">px</span>
 		</div>
+		<p id="iconMarginError" class="alert-danger">',t('Icon Spacing invalid!'),'</p>
 
 	</div>
 
@@ -165,46 +94,7 @@ echo '
 <script type="text/javascript">
 (function($) {
 	$(document).ready(function() {
-
-		var iconStyles = '<?=str_replace("\n", "'\n+ '", $this->controller->getIconStyles())?>';
-		var sortEvent = function(event, ui) {
-			$('#sortOrder').val($(this).sortable('toArray').toString());
-		};
-		$('#sortable').sortable({
-			placeholder: 'ui-state-highlight',
-			axis: 'y',
-			cursor: 'move',
-			create: sortEvent,
-			update: sortEvent
-		});
-
-		var onChange = function() {
-			var hovAtts = $('#hoverIcon').val() != 'none' ? ('background: ' + $('#hoverIcon').val()) : '';
-			$('style#iconStyles').html(
-				iconStyles
-					.replace(/%iconMargin%/g,	$('#iconMargin').val())
-					.replace(/%iconSize%/g, 	$('#iconSize').val())
-					.replace(/%hoverAttrs%/g,	hovAtts)
-					.replace(/%borderRadius%/g,	$('#iconShape').val() == 'round' ? $('#iconSize').val() / 2: 0)
-			);
-
-			var iColor = $('#iconColor').val();
-			$('#icon-preview-container .social-icon').each(function() {
-				var name = $(this).parent().attr('id').substr(1);
-				if (iColor == 'logo') {
-					iClass = 'social-icon-' + name;
-				}
-				else if (iColor == 'inverse') {
-					iClass = 'social-icon-' + name + '-inverse';
-				}
-				else {
-					iClass = 'social-icon-' + iColor;
-				}
-				$(this).attr('class', 'social-icon ' + iClass);
-			});
-		};
-		onChange();
-		$('#iconShape, #iconColor, #iconSize, #hoverIcon, #iconMargin').change(onChange);
+		window.initIconStyles('<?=str_replace("\n", '', $this->controller->getIconStyles())?>');
 	});
 } (window.jQuery));
 </script>

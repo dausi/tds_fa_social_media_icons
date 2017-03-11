@@ -2,6 +2,7 @@
 namespace Concrete\Package\TdsFaSocialMediaIcons\Block\TdsFaSocialMediaIcons;
 
 use Concrete\Core\Block\BlockController;
+use Config;
 
 class Controller extends BlockController
 {
@@ -11,9 +12,14 @@ class Controller extends BlockController
     protected $btTable = 'btTdsFaSocialMediaIcons';
     protected $btDefaultSet = 'social';
 
-    protected $iconStyles;
-    protected $iconColor;
-    protected $mediaList = null;
+    protected $iconStyles = '
+		.social-icon:hover { %hoverAttrs% }
+		.social-icon {	margin: 0 calc(%iconMargin%px / 2); float: left;
+						height: %iconSize%px; width: %iconSize%px; border-radius: %borderRadius%px; }
+		.social-icon i.fa {	font-size: calc(%iconSize%px *.6); text-align: center; width: 100%; padding-top: calc((100% - 1em) / 2); }
+		.social-icon-black { color: #ffffff; background: #000000; }
+		.social-icon-grey  { color: #ffffff; background: #696969; }
+	';
 
     public function getBlockTypeDescription()
     {
@@ -27,26 +33,25 @@ class Controller extends BlockController
 
     public function add()
     {
-    	$this->view();
+		$this->set('iconMargin', '0');
+		$this->edit();
     }
 
     public function edit()
     {
+    	$this->requireAsset('tds_fa_social_media_icons');
+        $this->set('targets',[
+	        '_blank'	=> t('a new window or tab'),
+	        '_self'		=> t('the same frame as it was clicked (this is default)'),
+	        '_parent'	=> t('the parent frame'),
+	        '_top'		=> t('the full body of the window'),
+        ]);
         $this->view();
     }
 
     public function view()
     {
-    	$this->mediaList = unserialize($this->mediaList);
-        if (empty($this->mediaList))
-        {
-        	$this->set('iconShape', 'round');
-        	$this->set('iconColor', 'logo');
-        	$this->set('iconSize', '25');
-        	$this->set('hoverIcon', 'none');
-        	$this->set('iconMargin', '0');
-        }
-        $this->iconColor = $this->getSets()['iconColor'];
+   		$this->mediaList = unserialize($this->mediaList);
     	$this->genIcons();
     	$this->set('mediaList', $this->mediaList);
     }
@@ -63,6 +68,17 @@ class Controller extends BlockController
     public function getIconStyles()
     {
     	return $this->iconStyles;
+    }
+
+    public function getIconStylesExpanded()
+    {
+    	$borderRadius = $this->iconShape == 'round' ? $this->iconSize / 2: 0;
+		$hoverAttrs = $this->hoverIcon != 'none' ? "background: $this->hoverIcon;" : '';
+		return '
+<style id="iconStyles" type="text/css">
+	'. str_replace(	['%iconMargin%',    '%iconSize%',    '%borderRadius%', '%hoverAttrs%'	],
+					[ $this->iconMargin, $this->iconSize, $borderRadius,    $hoverAttrs		], $this->iconStyles ). '
+</style>';
     }
 
     public function getMediaList()
@@ -96,7 +112,7 @@ class Controller extends BlockController
 	    	'Xing'			=> [ 'fa' => 'xing',		'icolor' => '#006567',	'ph' => t("https://www.xing.com/profile/your-account-name")		],
     	];
 
-    	$concrete = \Config::get('concrete');
+    	$concrete = Config::get('concrete');
     	$version = substr($concrete['version_installed'], 0, 1);
     	if ($version != '8')
     	{
@@ -104,16 +120,6 @@ class Controller extends BlockController
     		$mediaListMaster['Vimeo']['fa'] = 'vimeo-square';
     	}
 
-    	$this->iconStyles = '
-			.social-icon:hover { %hoverAttrs% }
-			.social-icon {	margin: 0 calc(%iconMargin%px / 2); float: left;
-							height: %iconSize%px; width: %iconSize%px; border-radius: %borderRadius%px; }
-			.social-icon i.fa {	font-size: calc(%iconSize%px *.6); text-align: center; width: 100%; padding-top: calc((100% - 1em) / 2); }
-			.social-icon-black { color: #ffffff; background: #000000; }
-			.social-icon-grey  { color: #ffffff; background: #696969; }
-		';
-
-    	$mustInit = empty($this->mediaList);
     	foreach ($mediaListMaster as $key => $mProps)
     	{
     		$this->iconStyles .= '	.social-icon-' . $key . ' { color: #ffffff; background: ' . $mProps['icolor'] . '; }'."\n";
@@ -125,14 +131,14 @@ class Controller extends BlockController
     		}
     		$icon =  '<span class="' . $iconClass . '"><i class="fa fa-' . $mProps['fa'] . '"></i></span>';
 
-    		if ($mustInit)
+    		if (empty($this->mediaList[$key]))
     		{
     			$this->mediaList[$key] = [];
     		}
     		$props = $this->mediaList[$key];
     		if ($props['checked'])
     		{
-    			$this->mediaList[$key]['html'] = '<a title="' . t('Go to'). ' ' . $key. '" target="' . $linkTarget . '"  href="' . $props['url'] . '">' . $icon . '</a>';
+    			$this->mediaList[$key]['html'] = '<a title="' . t('Go to'). ' ' . $key. '" target="' . $this->linkTarget . '"  href="' . $props['url'] . '">' . $icon . '</a>';
     		}
 
     		$this->mediaList[$key]['iconHtml'] = $icon;

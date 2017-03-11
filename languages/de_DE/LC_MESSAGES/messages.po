@@ -1,188 +1,199 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: fa_social_media_icons 0.9.9\n"
+"Project-Id-Version: tds_fa_social_media_icons 0.9.2\n"
 "Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2017-01-21 13:04+0100\n"
-"PO-Revision-Date: 2017-03-03 22:08+0100\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: 2017-03-11T21:10:32+01:00\n"
+"PO-Revision-Date: 2017-03-11 21:15+0100\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Poedit 1.8.12\n"
-"Last-Translator: \n"
-"Language: de\n"
 
-#: packages/fa_social_media_icons/controller.php:21
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/controller.php:21
+#: packages/tds_fa_social_media_icons/controller.php:26
 msgid "Social Media Icons based on FontAwesome"
 msgstr "Social Media Icons basierend auf FontAwesome"
 
-#: packages/fa_social_media_icons/controller.php:26
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/controller.php:16
+#: packages/tds_fa_social_media_icons/controller.php:31
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:26
 msgid "Add FontAwesome social media icons on your pages."
 msgstr "Social-Media-Icons (mit FontAwesome) auf Seiten hinzufügen."
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:4
-msgid "Social Media Accounts"
-msgstr "Accounts der Soical-Media-Dienste"
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:31
+msgid "FA Social Media Icons"
+msgstr "FA Social Media Icons"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:5
-msgid "Color and Style"
-msgstr "Farben und Stile"
-
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:66
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:44
 msgid "a new window or tab"
 msgstr "einem neuen Fenster oder Tab"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:67
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:45
 msgid "the same frame as it was clicked (this is default)"
 msgstr "gleichen Fenster (Standard)"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:68
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:46
 msgid "the parent frame"
 msgstr "Eltern-Frame"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:69
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:47
 msgid "the full body of the window"
 msgstr "dem vollen Textkörper"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:94
-msgid "Open Links in..."
-msgstr "Links öffnen in..."
-
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:133
-msgid "Icon Shape"
-msgstr "Form der Icons"
-
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:134
-msgid "round"
-msgstr "rund"
-
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:134
-msgid "square"
-msgstr "quadratisch"
-
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:136
-msgid "Icon Color"
-msgstr "Farbe der Icons"
-
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:137
-msgid "logo"
-msgstr "wie Logo"
-
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:137
-msgid "black"
-msgstr "schwarz"
-
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:137
-msgid "grey"
-msgstr "grau"
-
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:137
-msgid "inverse"
-msgstr "invers"
-
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:139
-msgid "Icon Size"
-msgstr "Größe der Icons"
-
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:142
-msgid "Hover Icon"
-msgstr "Farbe des Hover-Effekt"
-
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:154
-msgid "Icon Spacing"
-msgstr "Platz zwischen Icons"
-
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:155
-msgid "Space between icons (margin left + right)."
-msgstr "Platz zwischen de Icons (Rand links + rechts)"
-
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/form.php:164
-msgid "Icon Preview"
-msgstr "Vorschau"
-
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:5
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:93
 msgid "https://www.behance.net/your-account-name"
 msgstr "https://www.behance.net/dein-account-name"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:6
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:94
 msgid "https://your-account-name.deviantart.com"
 msgstr "https://dein-account-name.deviantart.com"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:7
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:95
 msgid "https://dribbble.com/your-account-name"
 msgstr "https://dribbble.com/dein-account-name"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:8
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:96
 msgid "mailto:your-email-address@example.com"
 msgstr "mailto:ydeine-email-adresse@emailprovider.de"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:9
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:97
 msgid "https://www.facebook.com/your-account-name"
 msgstr "https://www.facebook.com/dein-account-name"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:10
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:98
 msgid "https://www.flickr.com/photos/your-account-name"
 msgstr "https://www.flickr.com/photos/dein-account-name"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:11
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:99
 msgid "https://github.com/your-account-name"
 msgstr "https://github.com/dein-account-name"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:12
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:100
 msgid "https://plus.google.com/+your-account-name"
 msgstr "https://plus.google.com/+dein-account-name"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:13
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:101
 msgid "http://instagram.com/your-account-name"
 msgstr "http://instagram.com/dein-account-name"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:14
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:102
 msgid "https://itunes.apple.com/..."
 msgstr "https://itunes.apple.com/..."
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:15
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:103
 msgid "https://www.linkedin.com/in/your-account-name"
 msgstr "https://www.linkedin.com/in/dein-account-name"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:16
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:104
 msgid "https://www.pinterest.com/your-account-name"
 msgstr "https://www.pinterest.com/dein-account-name"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:17
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:105
 msgid "skype:profile_name?your-account-name"
 msgstr "skype:profile_name?dein-account-name"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:18
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:106
 msgid "https://soundcloud.com/your-account-name"
 msgstr "https://soundcloud.com/dein-account-name"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:19
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:107
 msgid "https://play.spotify.com/artist/your-account-name"
 msgstr "https://play.spotify.com/artist/your-account-name"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:20
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:108
 msgid "http://www.your-account-name.tumblr.com"
 msgstr "http://www.dein-account-name.tumblr.com"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:21
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:109
 msgid "https://twitter.com/your-account-name"
 msgstr "https://twitter.com/dein-account-name"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:22
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:110
 msgid "http://vimeo.com/your-account-name"
 msgstr "http://vimeo.com/dein-account-name"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:23
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:111
 msgid "https://www.youtube.com/user/your-account-name"
 msgstr "https://www.youtube.com/user/dein-account-name"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:24
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:112
 msgid "https://www.xing.com/profile/your-account-name"
 msgstr "https://www.xing.com/profile/dein-account-name"
 
-#: packages/fa_social_media_icons/blocks/fa_social_media_icons/genIcons.php:66
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:141
 msgid "Go to"
 msgstr "Gehe nach"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:4
+msgid "Social Media Accounts"
+msgstr "Accounts der Soical-Media-Dienste"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:5
+msgid "Color and Style"
+msgstr "Farben und Stile"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:13
+msgid "Open Links in..."
+msgstr "Links öffnen in..."
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:52
+msgid "Icon Shape"
+msgstr "Form der Icons"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:53
+msgid "round"
+msgstr "rund"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:53
+msgid "square"
+msgstr "quadratisch"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:55
+msgid "Icon Color"
+msgstr "Farbe der Icons"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:56
+msgid "logo"
+msgstr "wie Logo"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:56
+msgid "black"
+msgstr "schwarz"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:56
+msgid "grey"
+msgstr "grau"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:56
+msgid "inverse"
+msgstr "invers"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:58
+msgid "Icon Size"
+msgstr "Größe der Icons"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:61
+msgid "Hover Icon"
+msgstr "Farbe des Hover-Effekt"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:63
+msgid "none"
+msgstr "keine"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:74
+msgid "Icon Spacing"
+msgstr "Platz zwischen Icons"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:75
+msgid "Space between icons (margin left + right)."
+msgstr "Platz zwischen de Icons (Rand links + rechts)"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:80
+msgid "Icon Spacing invalid!"
+msgstr "Platz zwischen Icons ungültig!"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:85
+msgid "Icon Preview"
+msgstr "Vorschau"
