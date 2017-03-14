@@ -23,12 +23,15 @@
 			 */
 			$('#sortable input.ccm-input-text').change(function() {
 				var $inp = $(this);
-				var regex = new RegExp($inp.data('regex'));
-				if (!$inp.val().match(regex)) {
-					var t = $('#urlError').val().replace(/%s/, $inp.attr('id'));
-					ConcreteAlert.error({
-						message: t + '<br/><br/>' + $inp.attr('placeholder')
-					});
+				var value = $inp.val().replace(/^\s+|\s+$/gm,''); 
+				if (value != '') {
+					var regex = new RegExp($inp.data('regex'));
+					if (!value.match(regex)) {
+						var t = $('#urlError').val().replace(/%s/, $inp.attr('id'));
+						ConcreteAlert.error({
+							message: t + '<br/><br/>' + $inp.attr('placeholder')
+						});
+					}
 				}
 			});
 		}
