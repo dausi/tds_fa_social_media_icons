@@ -90,26 +90,46 @@ class Controller extends BlockController
     {
     	$mediaListMaster = [
 	    	//	name			 fa-					icon color				place holder
-	    	'Behance'		=> [ 'fa' => 'behance',		'icolor' => '#1769FF',	'ph' => t("https://www.behance.net/your-account-name")			],
-	    	'deviantART'	=> [ 'fa' => 'deviantart',	'icolor' => '#4E6252',	'ph' => t("https://your-account-name.deviantart.com")			],
-	    	'Dribbble'		=> [ 'fa' => 'dribbble',	'icolor' => '#EA4C89',	'ph' => t("https://dribbble.com/your-account-name")				],
-	    	'Email'			=> [ 'fa' => 'envelope-o',	'icolor' => '#696969',	'ph' => t("mailto:your-email-address@example.com")				],
-	    	'Facebook'		=> [ 'fa' => 'facebook',	'icolor' => '#3B5998',	'ph' => t("https://www.facebook.com/your-account-name")			],
-	    	'Flickr'		=> [ 'fa' => 'flickr',		'icolor' => '#000000',	'ph' => t("https://www.flickr.com/photos/your-account-name")	],
-	    	'Github'		=> [ 'fa' => 'github',		'icolor' => '#000000',	'ph' => t("https://github.com/your-account-name")				],
-	    	'GooglePlus'	=> [ 'fa' => 'google-plus',	'icolor' => '#DD4B39',	'ph' => t("https://plus.google.com/+your-account-name")			],
-	    	'Instagram'		=> [ 'fa' => 'instagram',	'icolor' => '#517FA4',	'ph' => t("http://instagram.com/your-account-name")				],
-	    	'iTunes'		=> [ 'fa' => 'music',		'icolor' => '#0247A4',	'ph' => t("https://itunes.apple.com/...")						],
-	    	'Linkedin'		=> [ 'fa' => 'linkedin',	'icolor' => '#007BB6',	'ph' => t("https://www.linkedin.com/in/your-account-name")		],
-	    	'Pinterest'		=> [ 'fa' => 'pinterest-p',	'icolor' => '#CB2027',	'ph' => t("https://www.pinterest.com/your-account-name")		],
-	    	'Skype'			=> [ 'fa' => 'skype',		'icolor' => '#00AFF0',	'ph' => t("skype:profile_name?your-account-name")				],
-	    	'SoundCloud'	=> [ 'fa' => 'soundcloud',	'icolor' => '#FF3A00',	'ph' => t("https://soundcloud.com/your-account-name")			],
-	    	'Spotify'		=> [ 'fa' => 'spotify',		'icolor' => '#7AB800',	'ph' => t("https://play.spotify.com/artist/your-account-name")	],
-	    	'Tumblr'		=> [ 'fa' => 'tumblr',		'icolor' => '#35465C',	'ph' => t("http://www.your-account-name.tumblr.com")			],
-	    	'Twitter'		=> [ 'fa' => 'twitter',		'icolor' => '#55ACEE',	'ph' => t("https://twitter.com/your-account-name")				],
-	    	'Vimeo'			=> [ 'fa' => 'vimeo',		'icolor' => '#1AB7EA',	'ph' => t("http://vimeo.com/your-account-name")					],
-	    	'Youtube'		=> [ 'fa' => 'youtube',		'icolor' => '#E52D27',	'ph' => t("https://www.youtube.com/user/your-account-name")		],
-	    	'Xing'			=> [ 'fa' => 'xing',		'icolor' => '#006567',	'ph' => t("https://www.xing.com/profile/your-account-name")		],
+	    	'Behance'		=> [ 'fa' => 'behance',		'icolor' => '#1769FF',	'ph' => t("https://www.behance.net/your-account-name"),
+	    																		'rx' => 'https://www\.behance\.net/[^/]+'						],
+	    	'deviantART'	=> [ 'fa' => 'deviantart',	'icolor' => '#4E6252',	'ph' => t("https://your-account-name.deviantart.com"),
+	    																		'rx' => 'https://[^/]+\.deviantart\.com'						],
+	    	'Dribbble'		=> [ 'fa' => 'dribbble',	'icolor' => '#EA4C89',	'ph' => t("https://dribbble.com/your-account-name"),
+	    																		'rx' => 'https://dribbble\.com/[^/]+'							],
+	    	'Email'			=> [ 'fa' => 'envelope-o',	'icolor' => '#696969',	'ph' => t("mailto:your-email-address@example.com"),
+	    												'rx' => 'mailto:^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$'	],
+	    	'Facebook'		=> [ 'fa' => 'facebook',	'icolor' => '#3B5998',	'ph' => t("https://www.facebook.com/your-account-name"),
+	    																		'rx' => 'https://www\.facebook\.com/[^/]+'						],
+	    	'Flickr'		=> [ 'fa' => 'flickr',		'icolor' => '#000000',	'ph' => t("https://www.flickr.com/photos/your-account-name"),
+	    																		'rx' => 'https://www\.flickr\.com/photos/[^/]+'					],
+	    	'Github'		=> [ 'fa' => 'github',		'icolor' => '#000000',	'ph' => t("https://github.com/your-account-name"),
+	    																		'rx' => 'https://github\.com/[^/]+'								],
+	    	'GooglePlus'	=> [ 'fa' => 'google-plus',	'icolor' => '#DD4B39',	'ph' => t("https://plus.google.com/+your-account-name"),
+	    																		'rx' => 'https://plus\.google\.com/\+[^/]+'						],
+	    	'Instagram'		=> [ 'fa' => 'instagram',	'icolor' => '#517FA4',	'ph' => t("http://instagram.com/your-account-name"),
+	    																		'rx' => 'http://instagram\.com/[^/]+'							],
+	    	'iTunes'		=> [ 'fa' => 'music',		'icolor' => '#0247A4',	'ph' => t("https://itunes.apple.com/..."),
+	    																		'rx' => 'https://itunes\.apple\.com/.*'							],
+	    	'Linkedin'		=> [ 'fa' => 'linkedin',	'icolor' => '#007BB6',	'ph' => t("https://www.linkedin.com/in/your-account-name"),
+	    																		'rx' => 'https://www\.linkedin\.com/in/[^/]+'					],
+	    	'Pinterest'		=> [ 'fa' => 'pinterest-p',	'icolor' => '#CB2027',	'ph' => t("https://www.pinterest.com/your-account-name"),
+	    																		'rx' => 'https://www\.pinterest\.com/[^/]+'						],
+	    	'Skype'			=> [ 'fa' => 'skype',		'icolor' => '#00AFF0',	'ph' => t("skype:profile_name?your-account-name"),
+	    																		'rx' => 'skype:[^/]+\?[^/]+'									],
+	    	'SoundCloud'	=> [ 'fa' => 'soundcloud',	'icolor' => '#FF3A00',	'ph' => t("https://soundcloud.com/your-account-name"),
+	    																		'rx' => 'https://soundcloud\.com/[^/]+'							],
+	    	'Spotify'		=> [ 'fa' => 'spotify',		'icolor' => '#7AB800',	'ph' => t("https://play.spotify.com/artist/your-account-name"),
+	    																		'rx' => 'https://play\.spotify\.com/artist//.*'					],
+	    	'Tumblr'		=> [ 'fa' => 'tumblr',		'icolor' => '#35465C',	'ph' => t("http://www.your-account-name.tumblr.com"),
+	    																		'rx' => 'http://www\.[^/]+\.tumblr\.com'						],
+	    	'Twitter'		=> [ 'fa' => 'twitter',		'icolor' => '#55ACEE',	'ph' => t("https://twitter.com/your-account-name"),
+	    																		'rx' => 'https://twitter\.com/[^/]+'							],
+	    	'Vimeo'			=> [ 'fa' => 'vimeo',		'icolor' => '#1AB7EA',	'ph' => t("http://vimeo.com/your-account-name"),
+	    																		'rx' => 'http://vimeo\.com/[^/]+'								],
+	    	'Youtube'		=> [ 'fa' => 'youtube',		'icolor' => '#E52D27',	'ph' => t("https://www.youtube.com/user/your-account-name"),
+	    																		'rx' => 'https://www\.youtube\.com/user/[^/]+'					],
+	    	'Xing'			=> [ 'fa' => 'xing',		'icolor' => '#006567',	'ph' => t("https://www.xing.com/profile/your-account-name"),
+	    																		'rx' => 'https://www\.xing\.com/profile/[^/]+'					],
     	];
 
     	$concrete = Config::get('concrete');
@@ -143,6 +163,7 @@ class Controller extends BlockController
 
     		$this->mediaList[$key]['iconHtml'] = $icon;
     		$this->mediaList[$key]['ph'] = $mProps['ph'];
+    		$this->mediaList[$key]['rx'] = $mProps['rx'];
     	}
     }
 }

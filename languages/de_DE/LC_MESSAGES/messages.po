@@ -7,13 +7,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2017-03-11T21:10:32+01:00\n"
-"PO-Revision-Date: 2017-03-11 21:15+0100\n"
+"POT-Creation-Date: 2017-03-14T09:29:16+01:00\n"
+"PO-Revision-Date: 2017-03-14 09:31+0100\n"
 "Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Poedit 1.8.12\n"
 
 #: packages/tds_fa_social_media_icons/controller.php:26
+#: packages/tds_fa_social_media_icons/controller.php:46
 msgid "Social Media Icons based on FontAwesome"
 msgstr "Social Media Icons basierend auf FontAwesome"
 
@@ -46,83 +47,83 @@ msgstr "dem vollen Textkörper"
 msgid "https://www.behance.net/your-account-name"
 msgstr "https://www.behance.net/dein-account-name"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:94
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:95
 msgid "https://your-account-name.deviantart.com"
 msgstr "https://dein-account-name.deviantart.com"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:95
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:97
 msgid "https://dribbble.com/your-account-name"
 msgstr "https://dribbble.com/dein-account-name"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:96
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:99
 msgid "mailto:your-email-address@example.com"
 msgstr "mailto:ydeine-email-adresse@emailprovider.de"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:97
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:101
 msgid "https://www.facebook.com/your-account-name"
 msgstr "https://www.facebook.com/dein-account-name"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:98
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:103
 msgid "https://www.flickr.com/photos/your-account-name"
 msgstr "https://www.flickr.com/photos/dein-account-name"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:99
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:105
 msgid "https://github.com/your-account-name"
 msgstr "https://github.com/dein-account-name"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:100
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:107
 msgid "https://plus.google.com/+your-account-name"
 msgstr "https://plus.google.com/+dein-account-name"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:101
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:109
 msgid "http://instagram.com/your-account-name"
 msgstr "http://instagram.com/dein-account-name"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:102
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:111
 msgid "https://itunes.apple.com/..."
 msgstr "https://itunes.apple.com/..."
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:103
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:113
 msgid "https://www.linkedin.com/in/your-account-name"
 msgstr "https://www.linkedin.com/in/dein-account-name"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:104
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:115
 msgid "https://www.pinterest.com/your-account-name"
 msgstr "https://www.pinterest.com/dein-account-name"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:105
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:117
 msgid "skype:profile_name?your-account-name"
 msgstr "skype:profile_name?dein-account-name"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:106
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:119
 msgid "https://soundcloud.com/your-account-name"
 msgstr "https://soundcloud.com/dein-account-name"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:107
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:121
 msgid "https://play.spotify.com/artist/your-account-name"
 msgstr "https://play.spotify.com/artist/your-account-name"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:108
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:123
 msgid "http://www.your-account-name.tumblr.com"
 msgstr "http://www.dein-account-name.tumblr.com"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:109
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:125
 msgid "https://twitter.com/your-account-name"
 msgstr "https://twitter.com/dein-account-name"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:110
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:127
 msgid "http://vimeo.com/your-account-name"
 msgstr "http://vimeo.com/dein-account-name"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:111
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:129
 msgid "https://www.youtube.com/user/your-account-name"
 msgstr "https://www.youtube.com/user/dein-account-name"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:112
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:131
 msgid "https://www.xing.com/profile/your-account-name"
 msgstr "https://www.xing.com/profile/dein-account-name"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:141
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/controller.php:161
 msgid "Go to"
 msgstr "Gehe nach"
 
@@ -138,62 +139,66 @@ msgstr "Farben und Stile"
 msgid "Open Links in..."
 msgstr "Links öffnen in..."
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:52
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:16
+msgid "Invalid address for &apos;%s&apos;, pattern is:"
+msgstr "Ungültige Adresse für Eintrag &apos;%s&apos;. Das Muster lautet:"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:53
 msgid "Icon Shape"
 msgstr "Form der Icons"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:53
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:54
 msgid "round"
 msgstr "rund"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:53
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:54
 msgid "square"
 msgstr "quadratisch"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:55
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:56
 msgid "Icon Color"
 msgstr "Farbe der Icons"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:56
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:57
 msgid "logo"
 msgstr "wie Logo"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:56
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:57
 msgid "black"
 msgstr "schwarz"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:56
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:57
 msgid "grey"
 msgstr "grau"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:56
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:57
 msgid "inverse"
 msgstr "invers"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:58
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:59
 msgid "Icon Size"
 msgstr "Größe der Icons"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:61
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:62
 msgid "Hover Icon"
 msgstr "Farbe des Hover-Effekt"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:63
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:64
 msgid "none"
 msgstr "keine"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:74
-msgid "Icon Spacing"
-msgstr "Platz zwischen Icons"
-
 #: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:75
+msgid "Icon Spacing"
+msgstr "Platz zwischen den Icons"
+
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:76
 msgid "Space between icons (margin left + right)."
-msgstr "Platz zwischen de Icons (Rand links + rechts)"
+msgstr "Platz zwischen den Icons (Rand links + rechts)"
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:80
-msgid "Icon Spacing invalid!"
-msgstr "Platz zwischen Icons ungültig!"
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:81
+msgid "Icon Spacing is not a valid number"
+msgstr "Der Wert für Platz zwischen den Icons ist keine gültige Zahl."
 
-#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:85
+#: packages/tds_fa_social_media_icons/blocks/tds_fa_social_media_icons/form.php:86
 msgid "Icon Preview"
 msgstr "Vorschau"

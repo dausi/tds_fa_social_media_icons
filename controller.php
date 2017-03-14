@@ -19,7 +19,7 @@ class Controller extends Package
 {
     protected $pkgHandle = 'tds_fa_social_media_icons';
     protected $appVersionRequired = '5.7.3';
-    protected $pkgVersion = '0.9.2';
+    protected $pkgVersion = '0.9.3';
 
     public function getPackageName()
     {

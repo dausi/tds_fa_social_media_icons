@@ -13,6 +13,7 @@ echo $this->controller->getIconStylesExpanded(), '
 		', $form->label('linkTarget', t('Open Links in...')),
 		$form->select('linkTarget', $targets, $linkTarget, array('style' => 'width: 100%;')),'
 	</div>
+	<input id="urlError" type="hidden" value="', t('Invalid address for &apos;%s&apos;, pattern is:'), '" />
 
 	<div class="form-group">
 		<ul id="sortable">';
@@ -22,14 +23,14 @@ foreach ($this->controller->getMediaList() as $key => $props)
 {
 	$checked = !empty($props['checked']);
 	echo '
-			<li id="' . $key . '" class="ui-state-default">
+			<li id="l_' . $key . '" class="ui-state-default">
 				', $form->label($key, t($key)), '
 				<div class="input-group">
 					<span class="input-group-addon">
 						', $form->checkbox("mediaList[$key][checked]", $key , $checked), '
 					</span>
 					<input id="', $key, '" type="text" name="mediaList[' . $key . '][url]" value="' . $props['url'] . '"',
-							' placeholder="' . $props['ph'] . '" class="form-control ccm-input-text">
+							' placeholder="' . $props['ph'] . '" class="form-control ccm-input-text" data-regex="' . $props['rx'] . '">
 					<span class="input-group-addon move"><i class="fa fa-arrows-v"></i></span>
 				</div>
 			</li>';
@@ -77,7 +78,7 @@ echo '
 			$form->text('iconMargin', $iconMargin, ['style' => 'text-align: center;']), '
 			<span class="input-group-addon">px</span>
 		</div>
-		<p id="iconMarginError" class="alert-danger">',t('Icon Spacing invalid!'),'</p>
+		<input type="hidden" id="iconMarginError" value="', t('Icon Spacing is not a valid number'), '" />
 
 	</div>
 
