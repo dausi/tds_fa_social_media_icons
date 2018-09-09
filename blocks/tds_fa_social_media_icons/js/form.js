@@ -17,14 +17,14 @@
 				update: sortEvent
 			});
 
-			$('#iconShape, #iconColor, #iconSize, #hoverIcon, #iconMargin').change(onChange);
+			$('#iconShape, #iconColor, #iconSize, #ccm-colorpicker-hoverIcon, #ccm-colorpicker-activeIcon, #iconMargin').change(onChange);
 			/*
 			 * setup URL validation
 			 */
 			$('#sortable input.ccm-input-text').change(function() {
 				var $inp = $(this);
 				var value = $inp.val().replace(/^\s+|\s+$/gm,''); 
-				if (value != '') {
+				if (value !== '') {
 					var regex = new RegExp($inp.data('regex'));
 					if (!value.match(regex)) {
 						var t = $('#urlError').val().replace(/%s/, $inp.attr('id'));
@@ -34,7 +34,11 @@
 					}
 				}
 			});
-		}
+			
+			$( '#icon-preview-container span.social-icon' ).click( function() {
+				$( this ).toggleClass( 'activated' );
+			});
+		};
 		
 		var sortEvent = function(event, ui) {
 			$('#sortOrder').val($(this).sortable('toArray').toString());
@@ -49,22 +53,24 @@
 			}
 			else {
 				$('#iconMarginError').hide();
-				var hovAtts = $('#hoverIcon').val() != 'none' ? ('background: ' + $('#hoverIcon').val()) : '';
+				var hovAtts = $('#ccm-colorpicker-hoverIcon').val()  !== 'none' ? ('background: ' + $('#ccm-colorpicker-hoverIcon').val()) : '';
+				var actAtts = $('#ccm-colorpicker-activeIcon').val() !== 'none' ? ('background: ' + $('#ccm-colorpicker-activeIcon').val()) : '';
 				$('style#iconStyles').html(
 					iconStyles
 						.replace(/%iconMargin%/g,	im)
 						.replace(/%iconSize%/g, 	$('#iconSize').val())
 						.replace(/%hoverAttrs%/g,	hovAtts)
-						.replace(/%borderRadius%/g,	$('#iconShape').val() == 'round' ? $('#iconSize').val() / 2: 0)
+						.replace(/%activeAttrs%/g,	actAtts)
+						.replace(/%borderRadius%/g,	$('#iconShape').val() === 'round' ? $('#iconSize').val() / 2: 0)
 				);
 	
 				var iColor = $('#iconColor').val();
 				$('#icon-preview-container .social-icon').each(function() {
 					var name = $(this).parent().attr('id').substr(1);
-					if (iColor == 'logo') {
+					if (iColor === 'logo') {
 						iClass = 'social-icon-' + name;
 					}
-					else if (iColor == 'inverse') {
+					else if (iColor === 'inverse') {
 						iClass = 'social-icon-' + name + '-inverse';
 					}
 					else {
@@ -74,5 +80,6 @@
 				});
 			}
 		};
+		
 	});
 } (window.jQuery));

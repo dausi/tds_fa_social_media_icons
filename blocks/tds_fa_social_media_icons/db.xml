@@ -12,6 +12,7 @@
     <field name="iconSize" type="I"/>
     <field name="hoverIcon" type="C"/>
     <field name="iconMargin" type="I"/>
+    <field name="activeIcon" type="C"/>
     <field name="mediaList" type="X"/>
   </table>
 

@@ -1,6 +1,7 @@
 <?php  defined('C5_EXECUTE') or die('Access Denied.');
 
-print Core::make('helper/concrete/ui')->tabs(array(
+$app = Concrete\Core\Support\Facade\Facade::getFacadeApplication();
+print $app->make('helper/concrete/ui')->tabs(array(
 	array('accounts', t('Social Media Accounts'), true),
 	array('colorstyle', t('Color and Style'))
 ));
@@ -41,6 +42,8 @@ foreach ($this->controller->getMediaList() as $key => $props)
 			</li>';
 }
 
+	$color = $app->make('helper/form/color');
+
 echo '
 		</ul>
 	</div>
@@ -50,31 +53,26 @@ echo '
 
 	<div id="icon-set-container" class="form-group pull-left">',
 
-		$form->label('iconShape', t('Icon Shape')),
+		$form->label('iconShape', t('Icon shape')),
 		$form->select('iconShape', ['round' => t('round'), 'square' => t('square')], $iconShape),
 
-		$form->label('iconColor', t('Icon Color')),
+		$form->label('iconColor', t('Icon color')),
 		$form->select('iconColor', ['logo' => t('logo'), 'black' => t('black'), 'grey' => t('grey'), 'inverse' => t('inverse')], $iconColor),
 
-		$form->label('iconSize', t('Icon Size')),
+		$form->label('iconSize', t('Icon size')),
 		$form->select('iconSize', ['25' => '25px', '30' => '30px', '35' => '35px', '40' => '40px', '45' => '45px'], $iconSize),
 
-		$form->label('hoverIcon', t('Hover Icon')),
-		# hoverIcon color names specified in https://www.w3.org/TR/css3-color/#svg-color
-		$form->select('hoverIcon', [	'none'		=> t('none'),
-										'Gainsboro'	=> 'Gainsboro',
-										'LightGray'	=> 'LightGray',
-										'Silver'	=> 'Silver',
-										'DarkGray'	=> 'DarkGray',
-										'DimGray'	=> 'DimGray',
-										'Gray'	=> 'Gray',
-										'LightSlateGray'	=> 'LightSlateGray',
-										'SlateGray'	=> 'SlateGray',
-										'DarkSlateGray'	=> 'DarkSlateGray', ], $hoverIcon),
+		$form->label('hoverIcon', t('Icon hover color')),
+		$color->output('hoverIcon', $hoverIcon, array('preferredFormat' => 'hex')),
 
-		$form->label('iconMargin', t('Icon Spacing')), '
-		<i class="fa fa-question-circle launch-tooltip" title="" data-original-title="', t('Space between icons (margin left + right).'). '"></i>
-		<div class="input-group" style="width: 55%;">',
+		$form->label('activeIcon', t('Icon activated color')),
+		$color->output('activeIcon', $activeIcon, array('preferredFormat' => 'hex')),
+
+		'<div class="lineup">',
+			$form->label('iconMargin', t('Icon spacing')), '
+			<i class="fa fa-question-circle launch-tooltip" title="" data-original-title="', t('Space between icons (margin left + right).'). '"></i>
+		</div>
+		<div class="input-group">',
 			$form->text('iconMargin', $iconMargin, ['style' => 'text-align: center;']), '
 			<span class="input-group-addon">px</span>
 		</div>
@@ -95,7 +93,7 @@ echo '
 <script type="text/javascript">
 (function($) {
 	$(document).ready(function() {
-		window.initIconStyles('<?=str_replace("\n", '', $this->controller->getIconStyles())?>');
+		window.initIconStyles('<?php echo str_replace("\n", '', $this->controller->getIconStyles()) ?>');
 	});
 } (window.jQuery));
 </script>
