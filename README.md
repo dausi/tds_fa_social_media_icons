@@ -11,6 +11,7 @@ Localization is available for de_DE, feel free to add more.
 * uses FontAwesome brand icons
 * choice of colors, hover, sizes, and styles
 * drag and drop ordering of icons
+* two-clicks EU-GDPR compliance
 
 ## Icons supported
 
