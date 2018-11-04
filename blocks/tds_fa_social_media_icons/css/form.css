@@ -1,14 +1,15 @@
 @CHARSET "ISO-8859-1";
-div.ccm-block-fa-social-media-icons ul.nav-tabs {
+.ccm-block-fa-social-media-icons ul.nav-tabs {
 	padding-top: 10px;
 }
-div.ccm-block-fa-social-media-icons .ccm-tab-content {
+.ccm-block-fa-social-media-icons .ccm-tab-content {
     padding-top: 10px;
 }
-.form-group.half {
-	width: calc(50% + 42px);
+div.ui-dialog .ccm-block-fa-social-media-icons .form-group.half {
+	margin: 0 0 30px;
+	padding: 0;
+	width: calc(50% - 15px);
 }
-
 .ccm-block-fa-social-media-icons ul#sortable {
 	margin: 0;
 	padding: 0;
@@ -113,16 +114,11 @@ div.ccm-block-fa-social-media-icons .ccm-tab-content {
 .ccm-block-fa-social-media-icons .bubbletext .input-group textarea {
 	height: 200px;
 }
-.ccm-block-fa-social-media-icons div.ui-dialog .ui-dialog-content div.form-group {
-	/* for c5-5.7 */
-	padding-left: 26px;
-	padding-right: 26px;
-	margin-left: -26px;
-	margin-right: -26px;
-}
 #ccm-tab-content-colorstyle.ccm-block-fa-social-media-icons div.form-group {
 	height: 100%;
-	width: calc(50% + 21px);
+	margin: 0;
+	padding: 0;
+	width: calc(50% - 15px);
 }
 #ccm-tab-content-colorstyle.ccm-block-fa-social-media-icons ul {
 	background-color: #f8f8f8;
