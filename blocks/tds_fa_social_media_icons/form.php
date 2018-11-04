@@ -1,49 +1,54 @@
 <?php  defined('C5_EXECUTE') or die('Access Denied.');
 
-$app = Concrete\Core\Support\Facade\Facade::getFacadeApplication();
-print $app->make('helper/concrete/ui')->tabs(array(
-	array('accounts', t('Social Media Accounts'), true),
-	array('colorstyle', t('Color and Style'))
-));
+$app = \Concrete\Core\Support\Facade\Facade::getFacadeApplication();
+$color = $app->make('helper/form/color');
 
-echo $this->controller->getIconStylesExpanded(), '
+$preview = '';
+
+echo 
+	$app->make('helper/concrete/ui')->tabs([
+		['accounts', t('Social media accounts'), true],
+		['colorstyle', t('Color and style')]
+	]), 
+
+	$this->controller->getIconStylesExpanded(), '
 
 <div id="ccm-tab-content-accounts" class="ccm-tab-content ccm-block-fa-social-media-icons">
 
-	<div class="form-group">
+	<div class="form-group pull-left half">
 		', $form->label('linkTarget', t('Open Links in...')),
-		$form->select('linkTarget', $targets, $linkTarget, array('style' => 'width: 100%;')),'
+		$form->select('linkTarget', $targets, $linkTarget), '
 	</div>
-	<input id="urlError" type="hidden" value="', t('Invalid address for &apos;%s&apos;, pattern is:'), '" />
-
+	<div class="form-group pull-right half">',
+		$form->label('align', t('Icon orientation')),
+		$form->select('align', $orientation, $align), '
+	</div>
+	<div class="clearfix"></div>
+ 
 	<div class="form-group">
 		<ul id="sortable">';
 
-$preview = '';
 foreach ($this->controller->getMediaList() as $key => $props)
 {
 	$checked = !empty($props['checked']);
 	echo '
-			<li id="l_' . $key . '" class="ui-state-default">
-				', $form->label($key, t($key)), '
-				<div class="input-group">
-					<span class="input-group-addon">
-						', $form->checkbox("mediaList[$key][checked]", $key , $checked), '
-					</span>
-					<input id="', $key, '" type="text" name="mediaList[' . $key . '][url]" value="' . $props['url'] . '"',
-							' placeholder="' . $props['ph'] . '" class="form-control ccm-input-text" data-regex="' . $props['rx'] . '">
-					<span class="input-group-addon move"><i class="fa fa-arrows-v"></i></span>
-				</div>
-			</li>';
+		<li id="l_' . $key . '" class="ui-state-default">',
+			$form->checkbox("mediaList[$key][checked]", $key , $checked ),
+			$form->label($key, t($key)), '
+			<button type="button" class="btn pull-right btn-primary edit">'. t('URL') .'</button>
+			<div class="input-group hidden">
+				<input id="', $key, '" type="text" name="mediaList[' . $key . '][url]" value="' . $props['url'] . '"',
+						' placeholder="' . $props['ph'] . '" class="form-control ccm-input-text" data-regex="' . $props['rx'] . '">
+				<button type="button" class="btn pull-left btn-primary cancel"><i class="fa fa-close"></i></button>
+				<button type="button" class="btn pull-right btn-primary check"><i class="fa fa-check"></i></button>
+			</div>
+		</li>';
 
 	$preview .= '
-			<li id="p' . $key . '" class="icon-box" title="' . $key . '">
-				' . $props['iconHtml'] . '
-			</li>';
+		<li id="p' . $key . '" class="icon-box'. ($checked ? '' : ' hidden') .'" title="' . $key . '">
+			' . $props['iconHtml'] . '
+		</li>';
 }
-
-	$color = $app->make('helper/form/color');
-
 echo '
 		</ul>
 	</div>
@@ -56,31 +61,53 @@ echo '
 		$form->label('iconShape', t('Icon shape')),
 		$form->select('iconShape', ['round' => t('round'), 'square' => t('square')], $iconShape),
 
-		$form->label('iconColor', t('Icon color')),
-		$form->select('iconColor', ['logo' => t('logo'), 'black' => t('black'), 'grey' => t('grey'), 'inverse' => t('inverse')], $iconColor),
+		'<div class="lineup">',
+			$form->label('iconStyle',  t('Icon style')), '
+			<i class="fa fa-question-circle launch-tooltip" title="" data-original-title="', 
+				t("'logo / logo inverse' selects the social media own color(s)"). '"></i>
+		</div>',
+		$form->select('iconStyle', $iconStyleList, $iconStyle),
 
-		$form->label('iconSize', t('Icon size')),
-		$form->select('iconSize', ['25' => '25px', '30' => '30px', '35' => '35px', '40' => '40px', '45' => '45px'], $iconSize),
+		'<div class="color-sel">',
+			$form->label('iconColor', t('Icon color')),
+			$color->output('iconColor', $iconColor, ['preferredFormat' => 'hex']),
+		'</div>
+	
+		<div class="lineup">',
+			$form->label('iconSize', t('Icon size')), '
+			<i class="fa fa-question-circle launch-tooltip" title="" data-original-title="', t('Icon size [20px...200px].'). '"></i>
+		</div>
+		<div class="input-group">',
+			$form->number('iconSize', $iconSize, ['min' => '20', 'max' => '200', 'style' => 'text-align: center;']), '
+			<span class="input-group-addon">px</span>
+		</div>',
+		$form->hidden('iconSize-error', t('Icon size "%s" is not a valid number')),
 
 		$form->label('hoverIcon', t('Icon hover color')),
-		$color->output('hoverIcon', $hoverIcon, array('preferredFormat' => 'hex')),
+		$color->output('hoverIcon', $hoverIcon, ['preferredFormat' => 'hex']),
 
 		$form->label('activeIcon', t('Icon activated color')),
-		$color->output('activeIcon', $activeIcon, array('preferredFormat' => 'hex')),
+		$color->output('activeIcon', $activeIcon, ['preferredFormat' => 'hex']),
 
 		'<div class="lineup">',
 			$form->label('iconMargin', t('Icon spacing')), '
-			<i class="fa fa-question-circle launch-tooltip" title="" data-original-title="', t('Space between icons (margin left + right).'). '"></i>
+			<i class="fa fa-question-circle launch-tooltip" title="" data-original-title="', t('Space between icons (margin left + right) [0...50px].'). '"></i>
 		</div>
 		<div class="input-group">',
-			$form->text('iconMargin', $iconMargin, ['style' => 'text-align: center;']), '
+			$form->number('iconMargin', $iconMargin, ['min' => '0', 'max' => '50', 'style' => 'text-align: center;']), '
 			<span class="input-group-addon">px</span>
 		</div>
-		<input type="hidden" id="iconMarginError" value="', t('Icon Spacing is not a valid number'), '" />
 
 	</div>
 
 	<div id="icon-preview-container" class="form-group pull-right">
+		<div class="lineup">',
+			$form->label('titleType',  t('Type of icon title')), '
+			<i class="fa fa-question-circle launch-tooltip" title="" data-original-title="', 
+				t('Some languages (like German) do have personal or formal salutations.'). '"></i>
+		</div>',
+		$form->select('titleType', $titleTypeList, $titleType), '
+
 		<label class="control-label">', t('Icon Preview'), '</label>
 		<ul id="center-boundary">
 			', $preview, '
@@ -91,9 +118,96 @@ echo '
 
 ?>
 <script type="text/javascript">
-(function($) {
-	$(document).ready(function() {
-		window.initIconStyles('<?php echo str_replace("\n", '', $this->controller->getIconStyles()) ?>');
-	});
-} (window.jQuery));
+	(function($) {
+		$(document).ready(function() {
+			window.initIconStyles('<?php echo str_replace("\n", '', $this->controller->getIconStyles()) ?>');
+			/*
+			 * service checkbox click handler --> preview
+			 */
+			$( '#ccm-tab-content-services .ccm-input-checkbox' ).change( function() {
+			   var $preview = $( '#p' + $( this ).val() );
+			   if ( $( this ).prop( 'checked' ) )
+					$preview.removeClass( 'hidden' );
+			   else $preview.addClass( 'hidden' );
+			});
+			/*
+			 * open URL edit modal
+			 */
+			$( 'button.edit' ).click( function() {
+				$( 'button.edit' ).next().addClass( 'hidden' );
+				$( this ).next().removeClass( 'hidden' );
+				var $txt = $( this ).parent().find( 'input[type=text]' );
+				if ( $txt.val() === '' )
+					$txt.val( $txt.attr ( 'placeholder' ) );
+				$txt.focus();
+			});
+			/*
+			 * close / cancel URL edit modal
+			 */
+			$( 'button.cancel' ).click( function() {
+				var $txt = $( this ).parent().find( 'input[type=text]' );
+				$txt.val( '' );
+				$( this ).parent().addClass( 'hidden' );
+				$( this ).parent().parent().find( '.ccm-input-checkbox' ).prop( 'checked', '' );
+				var $preview = $( '#p' + $txt.attr( 'id' ) );
+				$preview.addClass( 'hidden' );
+			});
+			/*
+			 * close / save URL edit modal
+			 */
+			$( 'button.check' ).click( function() {
+				$( this ).parent().addClass( 'hidden' );
+				var $txt = $( this ).parent().find( 'input[type=text]' );
+				$( this ).parent().parent().find( '.ccm-input-checkbox' ).prop( 'checked', $txt.val() !== '' ? 'checked' : '' );
+				var $preview = $( '#p' + $txt.attr( 'id' ) );
+				if ( $txt.val() !== '' )
+					 $preview.removeClass( 'hidden' );
+				else $preview.addClass( 'hidden' );
+			});
+			/*
+			 * setup URL validation
+			 */
+			var checkUrl = function() {
+				var $inp = $( this );
+				var value = $inp.val().replace( /^\s+|\s+$/gm, '' ); 
+				var regex = new RegExp( $inp.data('regex') );
+				var match = value.match( regex );
+				$inp.siblings( '.check' ).prop ( 'disabled',  match ? '' : 'disabled' );
+				$inp.parent().parent().find( '.ccm-input-checkbox' ).prop( 'checked', match ? 'checked' : '' );
+			};
+			$( '#sortable input.ccm-input-text' )
+				.each( checkUrl )
+				.keyup( checkUrl );
+			/*
+			 * click handler for form pseudo submit button
+			 */
+			$( '#ccm-form-submit-button' ).click(  function( e ) {
+				var checked = 0;
+				var empty = [];
+				$( '.ccm-block-fa-social-media-icons #sortable li' ).each( function() {
+					if ( $( 'input[type=checkbox]', this ).prop( 'checked' ) ) {
+						$inp = $( 'input[type=text]', this );
+						if ( $inp.val() === '' ) {
+							empty.push( $inp.attr( 'id' ) );
+						}
+						checked++;
+					}
+				});
+				if ( checked === 0 ) {
+					ConcreteAlert.error({
+						message: tds_visit_messages.no_svc_selected
+					});
+				} else if ( empty.length !== 0 ) {
+					ConcreteAlert.error({
+						message: tds_visit_messages.missing_urls.replace( /%s/, empty.join( ', ' ) ),
+						delay: 5000
+					});
+				} else {
+					return true;
+				}
+				e.preventDefault();
+				return false;
+			});
+		});
+	} (window.jQuery));
 </script>
