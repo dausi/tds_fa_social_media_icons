@@ -1,4 +1,0 @@
-This software is licensed under the terms described in the concrete5.org marketplace. 
-Please find the add-on there for the latest license copy.
-
-This add-on is based on "SVG Social Media Icons by Karl Dilkington (aka MrKDilkington)" licensed under GPLv3.

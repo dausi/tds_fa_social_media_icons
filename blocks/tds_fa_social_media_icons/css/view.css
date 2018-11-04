@@ -1,10 +1,18 @@
-.ccm-block-fa-social-media-icons div.svc {
-	cursor: pointer;
-	float: left;
+.ccm-block-fa-social-media-icons div.icon-container {
+	display: flex;
+	flex-wrap: wrap;
 	position: relative;
 }
-.ccm-block-fa-social-media-icons div.svc.activated span {
-    background-color: red;
+.ccm-block-fa-social-media-icons div.icon-container.left-align {
+	justify-content: flex-start;
+}
+.ccm-block-fa-social-media-icons div.icon-container.right-align {
+	justify-content: flex-end;
+}
+.ccm-block-fa-social-media-icons div.svc {
+	cursor: pointer;
+	display: inline-flex;		
+	position: relative;
 }
 .ccm-block-fa-social-media-icons .speech-bubble {
     background: #fff;
@@ -21,65 +29,75 @@
 .ccm-block-fa-social-media-icons div.svc.activated .speech-bubble {
 	display: block;
 }
-.ccm-block-fa-social-media-icons .speech-bubble:before,
-.ccm-block-fa-social-media-icons .speech-bubble:after {
+.ccm-block-fa-social-media-icons .speech-bubble span.arrow,
+.ccm-block-fa-social-media-icons .speech-bubble span.arrow-inner {
 	content: ' ';
 	border-style: solid;
 	position: absolute;
 	width: 0;
 	height: 0;
 }
-.ccm-block-fa-social-media-icons .speech-bubble:before {
+.ccm-block-fa-social-media-icons .speech-bubble span.arrow {
 	border-color: gray transparent transparent transparent;
-	bottom: -64px;
-	border-width: 32px 12px;
-	left: calc(50% - 10px);
+	bottom: -32px;
+	border-width: 32px 12px 0;
 }
-.ccm-block-fa-social-media-icons .speech-bubble:after {
+.ccm-block-fa-social-media-icons .speech-bubble span.arrow-inner {
 	border-color: white transparent transparent transparent;
-    bottom: -60px;
-	border-width: 30px 10px;
-	left: calc(50% - 8px);
+    bottom: -30px;
+	border-width: 30px 10px 0;
+	margin-left: 2px;
 }
-.ccm-block-fa-social-media-icons .speech-bubble.left:before,
-.ccm-block-fa-social-media-icons .speech-bubble.right:before {
+.ccm-block-fa-social-media-icons .speech-bubble.left span.arrow,
+.ccm-block-fa-social-media-icons .speech-bubble.right span.arrow {
 	border-width: 16px 12px;
 	bottom: -32px;
 }
-.ccm-block-fa-social-media-icons .speech-bubble.left:after,
-.ccm-block-fa-social-media-icons .speech-bubble.right:after {
+.ccm-block-fa-social-media-icons .speech-bubble.left span.arrow-inner,
+.ccm-block-fa-social-media-icons .speech-bubble.right span.arrow-inner {
 	border-width: 15px 10px;
-    bottom: -30px;
+	bottom: -29px;
+    margin-left: 1px;
 }
-.ccm-block-fa-social-media-icons .speech-bubble.left:before {
+.ccm-block-fa-social-media-icons .speech-bubble.left span.arrow {
 	border-color: gray transparent transparent gray;
-	left: 29px;
 }
-.ccm-block-fa-social-media-icons .speech-bubble.left:after {
+.ccm-block-fa-social-media-icons .speech-bubble.left span.arrow-inner {
 	border-color: white transparent transparent white;
-    left: 30px;
 }
-.ccm-block-fa-social-media-icons .speech-bubble.right:before {
+.ccm-block-fa-social-media-icons .speech-bubble.right span.arrow {
 	border-color: gray gray transparent transparent;
-	left: auto;
-	right: 29px;
 }
-.ccm-block-fa-social-media-icons .speech-bubble.right:after {
+.ccm-block-fa-social-media-icons .speech-bubble.right span.arrow-inner {
 	border-color: white white transparent transparent;
-	left: auto;
-    right: 30px;
+	margin-left: 3px;
 }
-.ccm-block-fa-social-media-icons .speech-bubble input[type=checkbox] {
-	cursor: pointer;
-	float: left;
+.ccm-block-fa-social-media-icons .speech-bubble button,
+.ccm-block-fa-social-media-icons .speech-bubble button:focus {
+	background: none;
+	border: none;
+	outline: none;
+}
+.ccm-block-fa-social-media-icons .speech-bubble button {
+	float: right;
+	padding-left: 10px;
+	position: relative;
+	right: -10px;
+	top: -7px;
+}
+.ccm-block-fa-social-media-icons .speech-bubble button i {
+	color: initial;
+	font-size: 35px;
 }
 .ccm-block-fa-social-media-icons .speech-bubble label {
-    cursor: pointer;
     display: block;
     font-size: 12px;
     font-weight: inherit;
     line-height: initial;
-    margin-left: 20px;
+    margin: 0;
+}
+.ccm-block-fa-social-media-icons .speech-bubble label i.fa-times {
+	font-size: 1.3em;
     position: relative;
-    top: 2px;
+    top: 1px;
 }

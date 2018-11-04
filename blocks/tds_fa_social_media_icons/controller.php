@@ -1,9 +1,14 @@
 <?php
+/**
+ * TDS Visit Our Page add-on block controller.
+ *
+ * Copyright 2018 - TDSystem Beratung & Training - Thomas Dausner (aka dausi)
+ */
 namespace Concrete\Package\TdsFaSocialMediaIcons\Block\TdsFaSocialMediaIcons;
 
 use Concrete\Core\Block\BlockController;
-use Config;
-use Request;
+use Concrete\Core\View\View;
+use Concrete\Core\Asset\AssetList;
 
 class Controller extends BlockController
 {
@@ -14,14 +19,18 @@ class Controller extends BlockController
     protected $btDefaultSet = 'social';
 
     protected $iconStyles = '
-		.ccm-block-fa-social-media-icons .icon-container .svc.activated span { %activeAttrs% }
-		.ccm-block-fa-social-media-icons .social-icon:hover { %hoverAttrs% }
-		.ccm-block-fa-social-media-icons .social-icon.activated, .ccm-block-fa-social-media-icons .social-icon.activated:hover { %activeAttrs% }
-		.ccm-block-fa-social-media-icons .social-icon {	float: left; margin: 0 calc(%iconMargin%px / 2);
+		.ccm-block-fa-social-media-icons.block-%b% .icon-container .svc.activated span { %activeAttrs% }
+		.ccm-block-fa-social-media-icons.block-%b% .social-icon:hover { %hoverAttrs% }
+		.ccm-block-fa-social-media-icons.block-%b% .social-icon-color { color: #f8f8f8; background: %iconColor%; }
+		.ccm-block-fa-social-media-icons.block-%b% .social-icon-color-inverse { color: %iconColor%; }
+		.ccm-block-fa-social-media-icons.block-%b% .social-icon.activated, .ccm-block-fa-social-media-icons .social-icon.activated:hover { %activeAttrs% }
+		.ccm-block-fa-social-media-icons.block-%b% .social-icon {	float: left; margin: 0 calc(%iconMargin%px / 2);
 														height: %iconSize%px; width: %iconSize%px; border-radius: %borderRadius%px; }
-		.ccm-block-fa-social-media-icons .social-icon i.fa {	display: block;
-							font-size: calc(%iconSize%px *.6); text-align: center; width: 100%; padding-top: calc((100% - 1em) / 2); }
+		.ccm-block-fa-social-media-icons.block-%b% .social-icon i.fa {	display: block; font-size: calc(%iconSize%px *.6); text-align: center;
+                                                                        width: 100%; padding-top: calc((100% - 1em) / 2); }
 	';
+	protected $mediaList = [];
+	protected $bUID = 0;
 
     public function getBlockTypeDescription()
     {
@@ -30,16 +39,18 @@ class Controller extends BlockController
 
     public function getBlockTypeName()
     {
-        return t('TDS Social Media Visit Icons');
+        return t('"Visit" Links');
     }
 
     public function add()
     {
 		$this->set('linkTarget', '_self');
 		$this->set('align', 'left');
-		$this->set('titleType', 'my_personal');
 		$this->set('iconStyle', 'logo');
+		$this->set('iconColor', '#00f');	/* blue */
 		$this->set('iconSize', '20');
+		$this->set('hoverIcon', '#ccc');	/* pale gray */
+		$this->set('activeIcon', '#ff0');	/* yellow */
 		$this->set('iconMargin', '0');
 		$this->edit();
     }
@@ -56,19 +67,32 @@ class Controller extends BlockController
 	        'left'	=> t('left'),
 	        'right'	=> t('right'),
         ]);
-		$this->set('titleTypeList', [
-	        'my_personal'	=> t('Visit my page at... (personal)'),
-	        'my_formal'		=> t('Visit my page at... (formal)'),
-	        'our_personal'	=> t('Visit our page at... (personal)'),
-	        'our_formal'	=> t('Visit our page at... (formal)'),
-        ]);
 		$this->set('iconStyleList', [
 			'logo'			=> t('logo'),
 			'logo-inverse'	=> t('logo inverse'),
 			'color'			=> t('color'),
 			'color-inverse'	=> t('color inverse')
 		]);
+		$this->set('titleTextTemplate', t('Visit our page at %s'));
+		$this->set('bubbleTextTemplate', t('You now have enabled the icon to visit our page at "%s".'.
+									' If you now click at the activated icon the "visit" page at "%s" shall be opened.'.
+									' On opening your personal browser data is transmitted to the provider "%s".'.
+									' To avoid this you can click at the close <strong>X</strong> button'.
+                                    ' and by this disable the "visit "icon.'));
+		$this->set('messages', [
+			'no_svc_selected' => t('No social media service selected.'),
+			'missing_urls'	  => t('Missing URL(s) for: %s'),
+		]);
 
+		$al = AssetList::getInstance();
+		$ph = 'tds_fa_social_media_icons';
+		$al->register('css', $ph.'/form', 'blocks/'.$ph.'/css/form.css', [], $ph);
+		$al->registerGroup($ph, [
+			['css', $ph.'/form'],
+		]);
+		$v = View::getInstance();
+		$v->requireAsset($ph);
+		
 		$this->view();
     }
 
@@ -78,13 +102,20 @@ class Controller extends BlockController
 		{	// add from clipboard --> is array already
 			$this->mediaList = unserialize($this->mediaList);
 		}
-    	$this->genIcons();
+    	$this->setupMediaList();
     	$this->set('mediaList', $this->mediaList);
+		$this->set('bUID', $this->app->make('helper/validation/identifier')->getString(8));
 		if ($this->align == NULL)
 		{
 			$this->align = 'left';
     		$this->set('align', $this->align);
 		}
+	}
+
+	public function registerViewAssets($outputContent = '')
+	{
+		$this->requireAsset('font-awesome');
+		$this->requireAsset('javascript', 'jquery');
 	}
 
     public function save($args)
@@ -96,20 +127,21 @@ class Controller extends BlockController
         parent::save($args);
     }
 
-    public function getIconStyles()
+    public function getIconStyles($bUID)
     {
-    	return $this->iconStyles;
+    	return str_replace(	'%b%', $bUID, $this->iconStyles );
     }
 
-    public function getIconStylesExpanded()
+    public function getIconStylesExpanded($bUID)
     {
+		$this->bUID = $bUID;
     	$borderRadius = $this->iconShape == 'round' ? $this->iconSize / 2: 0;
 		$hoverAttrs = $this->hoverIcon != '' ? "background: $this->hoverIcon;" : '';
 		$activeAttrs = $this->activeIcon != '' ? "background-color: $this->activeIcon;" : '';
 		return '
-<style id="iconStyles" type="text/css">
-	'. str_replace(	['%iconMargin%',    '%iconSize%',    '%borderRadius%', '%hoverAttrs%',	'%activeAttrs%'	],
-					[ $this->iconMargin, $this->iconSize, $borderRadius,    $hoverAttrs,	 $activeAttrs	], $this->iconStyles ). '
+<style id="iconStyles-' . $bUID . '" type="text/css">
+	'. str_replace(	['%b%', '%iconColor%',    '%iconMargin%',    '%iconSize%',    '%borderRadius%', '%hoverAttrs%', '%activeAttrs%'	],
+					[ $bUID, $this->iconColor, $this->iconMargin, $this->iconSize, $borderRadius,    $hoverAttrs,	   $activeAttrs 	], $this->iconStyles ). '
 </style>';
     }
 
@@ -118,11 +150,9 @@ class Controller extends BlockController
     	return $this->mediaList;
     }
 
-    private function genIcons()
+    private function setupMediaList()
     {
-		$req = Request::getInstance();
-		$app = \Concrete\Core\Support\Facade\Application::getFacadeApplication();
-
+		$req = $this->app->make(\Concrete\Core\Http\Request::class);
 		$c = $req->getCurrentPage();
         if (is_object($c) && !$c->isError()) {
             $title = $c->getCollectionName();
@@ -144,8 +174,6 @@ class Controller extends BlockController
 	    																		'rx' => '^https://(www\.)?flickr\.com/photos/[^/]+'				],
 	    	'Github'		=> [ 'fa' => 'github',		'icolor' => '#000000',	'ph' => t("https://github.com/your-account-name"),
 	    																		'rx' => '^https://(www\.)?github\.com/[^/]+'							],
-	    	'GooglePlus'	=> [ 'fa' => 'google-plus',	'icolor' => '#DD4B39',	'ph' => t("https://plus.google.com/+your-account-name"),
-	    																		'rx' => '^https://plus\.google\.com/\+[^/]+'					],
 	    	'Instagram'		=> [ 'fa' => 'instagram',	'icolor' => '#517FA4',	'ph' => t("http://instagram.com/your-account-name"),
 	    																		'rx' => '^http://(www\.)?instagram\.com/[^/]+'							],
 	    	'iTunes'		=> [ 'fa' => 'music',		'icolor' => '#0247A4',	'ph' => t("https://itunes.apple.com/..."),
@@ -172,9 +200,7 @@ class Controller extends BlockController
 	    																		'rx' => '^https://(www\.)?xing\.com/profile/[^/]+'					],
     	];
 
-    	$concrete = Config::get('concrete');
-    	$version = intval(substr($concrete['version_installed'], 0, 1));
-    	if ($version < 8)
+    	if (version_compare(APP_VERSION, '8.0', '<'))
     	{
     		$mediaListMaster['Pinterest']['fa'] = 'pinterest';
     		$mediaListMaster['Vimeo']['fa'] = 'vimeo-square';
@@ -182,36 +208,15 @@ class Controller extends BlockController
 
 		$colors = strpos($this->iconStyle, 'logo') === FALSE;
 		$inverse = strpos($this->iconStyle,'inverse') !== FALSE;
-		if ($colors)
-		{
-			$this->iconStyles .= '	.ccm-block-fa-social-media-icons .social-icon-color { color: #f8f8f8; background: '. $this->iconColor .'; }'."\n";
-			$this->iconStyles .= '	.ccm-block-fa-social-media-icons .social-icon-color-inverse { color: '. $this->iconColor .'; }'."\n";
-		}
-		
+		$blockClass = '	.ccm-block-fa-social-media-icons.block-%b%';
 		foreach ($mediaListMaster as $key => $mProps)
     	{
-			$this->iconStyles .= '	.ccm-block-fa-social-media-icons .social-icon-' . $key . ' { color: #ffffff; background: ' . $mProps['icolor'] . '; }'."\n";
-			$this->iconStyles .= '	.ccm-block-fa-social-media-icons .social-icon-' . $key . '-inverse { color: ' . $mProps['icolor'] . '; }'."\n";
-			$iconClass = 'social-icon  social-icon-';
+			$this->iconStyles .= $blockClass . ' .social-icon-' . $key . ' { color: #ffffff; background: ' . $mProps['icolor'] . '; }'."\n";
+			$this->iconStyles .= $blockClass . ' .social-icon-' . $key . '-inverse { color: ' . $mProps['icolor'] . '; }'."\n";
+			$iconClass = 'social-icon social-icon-';
 			$iconClass .= $colors ? 'color' : $key;
 			$iconClass .= $inverse ? '-inverse' : '';
 
-			switch ($this->titleType)
-			{
-	        	case 'my_personal':
-					$title = t('Come and see my page at %s.', $key);
-					break;
-	        	case 'my_formal':
-					$title = t('Visit my page at %s.', $key);
-					break;
-	        	case 'our_personal':
-					$title = t('Come and see our page at %s.', $key);
-					break;
-	        	case 'our_formal':
-					$title = t('Visit our page at %s.', $key);
-					break;
-			}
-			
 			if (empty($this->mediaList[$key]))
 			{
 				$this->mediaList[$key] = [];

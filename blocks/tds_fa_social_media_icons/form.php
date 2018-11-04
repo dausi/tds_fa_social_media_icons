@@ -4,6 +4,10 @@ $app = \Concrete\Core\Support\Facade\Facade::getFacadeApplication();
 $color = $app->make('helper/form/color');
 
 $preview = '';
+if ($titleText == '')
+	$titleText = $titleTextTemplate;
+if ($bubbleText == '')
+	$bubbleText = $bubbleTextTemplate;
 
 echo 
 	$app->make('helper/concrete/ui')->tabs([
@@ -11,9 +15,9 @@ echo
 		['colorstyle', t('Color and style')]
 	]), 
 
-	$this->controller->getIconStylesExpanded(), '
+	$this->controller->getIconStylesExpanded(0), '
 
-<div id="ccm-tab-content-accounts" class="ccm-tab-content ccm-block-fa-social-media-icons">
+<div id="ccm-tab-content-accounts" class="ccm-tab-content ccm-block-fa-social-media-icons block-' . $bUID . '">
 
 	<div class="form-group pull-left half">
 		', $form->label('linkTarget', t('Open Links in...')),
@@ -54,7 +58,7 @@ echo '
 	</div>
 </div>
 
-<div class="ccm-tab-content ccm-block-fa-social-media-icons" id="ccm-tab-content-colorstyle" style="position: relative; height: 475px;">
+<div class="ccm-tab-content ccm-block-fa-social-media-icons block-0" id="ccm-tab-content-colorstyle" style="position: relative; height: 475px;">
 
 	<div id="icon-set-container" class="form-group pull-left">',
 
@@ -81,7 +85,6 @@ echo '
 			$form->number('iconSize', $iconSize, ['min' => '20', 'max' => '200', 'style' => 'text-align: center;']), '
 			<span class="input-group-addon">px</span>
 		</div>',
-		$form->hidden('iconSize-error', t('Icon size "%s" is not a valid number')),
 
 		$form->label('hoverIcon', t('Icon hover color')),
 		$color->output('hoverIcon', $hoverIcon, ['preferredFormat' => 'hex']),
@@ -101,15 +104,40 @@ echo '
 	</div>
 
 	<div id="icon-preview-container" class="form-group pull-right">
+    
 		<div class="lineup">',
-			$form->label('titleType',  t('Type of icon title')), '
-			<i class="fa fa-question-circle launch-tooltip" title="" data-original-title="', 
-				t('Some languages (like German) do have personal or formal salutations.'). '"></i>
+			$form->label('titleText',  t('Icon hover title')),'
+			<i class="fa fa-question-circle launch-tooltip" title="" data-original-title="',
+										h(t('The expression "%s" is replaced by the social service name.', '%s')). '"></i>
 		</div>',
-		$form->select('titleType', $titleTypeList, $titleType), '
+		$form->text('titleText', $titleText),'
+
+		<div class="lineup">',
+			$form->label('bubbleText', t('Bubble text')), '
+			<i class="fa fa-question-circle launch-tooltip" title="" data-original-title="',
+										t('This is the text popping up in a bubble on clicking at a social media "visit" icon'), '"></i>
+			<div class="bubbletext">
+				<button type="button" class="btn pull-right btn-primary edit">', t('Edit') ,'</button>
+				<div class="input-group hidden">
+					<div class="lineup">
+						<label class="control-label">', t('Bubble text on clicking at a social media "visit" icon'). '</label>
+						<i class="fa fa-question-circle launch-tooltip" title="" data-original-title="',
+											h(t('The expression "%s" is replaced by the social service name.', '%s')). '"></i>
+					</div>
+					<div class="ta">',
+						$form->textarea('bubbleText', $bubbleText), '
+					</div>
+					<button type="button" title="', t('Reset bubble text to recommended default.'),'" 
+																	class="btn pull-left btn-primary undo"><i class="fa fa-undo"></i></button>
+					<button type="button" title="', t('Save'), '" class="btn pull-right btn-primary save"><i class="fa fa-check"></i></button>
+				</div>
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
 
 		<label class="control-label">', t('Icon Preview'), '</label>
-		<ul id="center-boundary">
+		<ul>
 			', $preview, '
 		</ul>
 	</div>
@@ -120,15 +148,48 @@ echo '
 <script type="text/javascript">
 	(function($) {
 		$(document).ready(function() {
-			window.initIconStyles('<?php echo str_replace("\n", '', $this->controller->getIconStyles()) ?>');
+			window.initIconStyles('<?php echo str_replace("\n", '', $this->controller->getIconStyles(0)) ?>');
 			/*
 			 * service checkbox click handler --> preview
 			 */
-			$( '#ccm-tab-content-services .ccm-input-checkbox' ).change( function() {
+			$( '#ccm-tab-content-accounts .ccm-input-checkbox' ).change( function() {
 			   var $preview = $( '#p' + $( this ).val() );
 			   if ( $( this ).prop( 'checked' ) )
 					$preview.removeClass( 'hidden' );
 			   else $preview.addClass( 'hidden' );
+			});
+			/*
+			 * open bubbleText edit modal
+			 */
+			$( 'button.edit' ).click( function() {
+				$( this ).next().removeClass( 'hidden' );
+				var $txt = $( this ).parent().find( 'textarea' );
+				if ( $txt.text() === '' )
+					$txt.text( '<?php echo $bubbleTextTemplate ?>' );
+				$txt.focus();
+			});
+			/*
+			 * undo bubbleText edit modal
+			 */
+			$( 'button.undo' ).click( function() {
+				$( this ).parent()
+					.find( 'textarea' )
+						.val( '<?php echo $bubbleTextTemplate ?>' )
+						.focus()
+				;				
+				$( 'button.save' ).prop( 'disabled', false ) ;
+			});
+			/*
+			 * save bubbleText edit modal
+			 */
+			$( 'button.save' ).click( function() {
+				$( this ).parent().addClass( 'hidden' );
+			});
+			/*
+			 * bubbleText change handler
+			 */
+			$( '#bubbleText' ).change( function() {
+				$( 'button.save' ).prop( 'disabled', $( this ).val()  === '' ); 
 			});
 			/*
 			 * open URL edit modal
@@ -195,11 +256,11 @@ echo '
 				});
 				if ( checked === 0 ) {
 					ConcreteAlert.error({
-						message: tds_visit_messages.no_svc_selected
+						message: '<?php echo $messages["no_svc_selected"] ?>'
 					});
 				} else if ( empty.length !== 0 ) {
 					ConcreteAlert.error({
-						message: tds_visit_messages.missing_urls.replace( /%s/, empty.join( ', ' ) ),
+						message: '<?php echo $messages["missing_urls"] ?>'.replace( /%s/, empty.join( ', ' ) ),
 						delay: 5000
 					});
 				} else {
