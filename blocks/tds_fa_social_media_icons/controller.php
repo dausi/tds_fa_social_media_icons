@@ -102,6 +102,7 @@ class Controller extends BlockController
 		{	// add from clipboard --> is array already
 			$this->mediaList = unserialize($this->mediaList);
 		}
+		$this->app = \Concrete\Core\Support\Facade\Application::getFacadeApplication();
     	$this->setupMediaList();
     	$this->set('mediaList', $this->mediaList);
 		$this->set('bUID', $this->app->make('helper/validation/identifier')->getString(8));
