@@ -7,3 +7,4 @@ current releases:
 0.9.5 - EU-GDPR compliant two-clicks solution
 0.9.6 - horizontal align & salutations added
 0.9.7 - bubble sticks to icon on window resize, if applicable
+0.9.8 - bug on resize fixed
